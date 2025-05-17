@@ -4,6 +4,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 from datetime import datetime
 import plotly.express as px
+import json, os
 
 # --- Connect to Google Sheets ---
 #@st.cache_resource
@@ -13,7 +14,9 @@ def connect_sheet():
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive",
     ]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("moodtracker-460023-e8b2f3464885.json", scope)
+    creds_dict = json.loads(os.environ["GOOGLE_CREDS"])
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    #creds = ServiceAccountCredentials.from_json_keyfile_name("moodtracker-460023-e8b2f3464885.json", scope)
     client = gspread.authorize(creds)
     sheet = client.open("ModeTracker").sheet1
     return sheet
