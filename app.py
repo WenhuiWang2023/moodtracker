@@ -14,7 +14,7 @@ def connect_sheet():
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive",
     ]
-    creds_dict = json.loads(os.environ['GOOGLE_CREDS'])
+    creds_dict = json.loads(os.environ["GOOGLE_CREDS"])
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     #creds = ServiceAccountCredentials.from_json_keyfile_name("moodtracker-460023-e8b2f3464885.json", scope)
     client = gspread.authorize(creds)
