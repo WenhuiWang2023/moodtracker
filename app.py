@@ -53,7 +53,7 @@ def load_data():
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
     if not df.empty:
-        df["timestamp"] = pd.to_datetime(df["timestamp"], format="%Y-%m-%dT%H:%M:%S.%f")
+        df["timestamp"] = pd.to_datetime(df["timestamp"], format="mixed")
     return df
 
 df = load_data()
