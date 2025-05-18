@@ -7,7 +7,6 @@ import plotly.express as px
 import json, os
 
 # --- Connect to Google Sheets ---
-#@st.cache_resource
 def connect_sheet():
     scope = [
         "https://spreadsheets.google.com/feeds",
@@ -16,7 +15,6 @@ def connect_sheet():
     ]
     creds_dict = json.loads(os.environ["GOOGLE_CREDS"])
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-    #creds = ServiceAccountCredentials.from_json_keyfile_name("moodtracker-460023-e8b2f3464885.json", scope)
     client = gspread.authorize(creds)
     sheet = client.open("ModeTracker").sheet1
     return sheet
@@ -48,7 +46,6 @@ st.markdown("---")
 st.subheader("📊 Today's Mood Summary")
 
 # --- Load and process data ---
-#@st.cache_data
 def load_data():
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
