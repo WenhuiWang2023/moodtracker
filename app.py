@@ -48,7 +48,7 @@ st.markdown("---")
 st.subheader("📊 Today's Mood Summary")
 
 # --- Load and process data ---
-@st.cache_data
+#@st.cache_data
 def load_data():
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
